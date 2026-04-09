@@ -1,7 +1,588 @@
 <!doctype html>
-<html>
-  <head><meta charset="utf-8"><title>jalees018</title></head>
-  <body>
-    <h1>Hello from jalees018.github.io</h1>
-  </body>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Jalees — Graphics • 3D Vision • Digital Humans</title>
+  <meta name="description" content="Research portfolio: graphics, 3D vision, digital humans." />
+
+  <style>
+    :root{
+      --bg: #0b1020;
+      --panel: rgba(255,255,255,.06);
+      --panel2: rgba(255,255,255,.09);
+      --text: rgba(255,255,255,.88);
+      --muted: rgba(255,255,255,.68);
+      --faint: rgba(255,255,255,.50);
+      --line: rgba(255,255,255,.14);
+      --brand: #7c5cff;
+      --brand2:#3fe3c8;
+      --shadow: 0 20px 60px rgba(0,0,0,.45);
+      --radius: 18px;
+      --radius2: 14px;
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      --max: 1040px;
+    }
+
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body{
+      margin:0;
+      font-family: var(--sans);
+      color: var(--text);
+      background:
+        radial-gradient(1200px 800px at 15% 10%, rgba(124,92,255,.28), transparent 55%),
+        radial-gradient(900px 700px at 75% 20%, rgba(63,227,200,.20), transparent 55%),
+        radial-gradient(1100px 900px at 45% 85%, rgba(255,255,255,.08), transparent 60%),
+        var(--bg);
+      letter-spacing: .2px;
+    }
+
+    a{ color: inherit; text-decoration: none; }
+    a:hover{ text-decoration: underline; text-underline-offset: 3px; }
+
+    .wrap{
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 32px 18px 60px;
+    }
+
+    /* Top nav */
+    .nav{
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(10px);
+      background: linear-gradient(to bottom, rgba(11,16,32,.72), rgba(11,16,32,.24));
+      border-bottom: 1px solid rgba(255,255,255,.08);
+    }
+    .nav-inner{
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 14px 18px;
+      display:flex;
+      align-items:center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .brand{
+      display:flex;
+      align-items:center;
+      gap: 10px;
+      min-width: 240px;
+    }
+    .dot{
+      width: 10px; height: 10px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--brand), var(--brand2));
+      box-shadow: 0 0 0 4px rgba(124,92,255,.14);
+    }
+    .brand strong{ font-weight: 650; }
+    .brand span{ color: var(--muted); font-size: 13px; }
+    .nav-links{
+      display:flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+    .nav-links a{
+      color: var(--muted);
+      font-size: 14px;
+      padding: 8px 10px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+    }
+    .nav-links a:hover{
+      color: var(--text);
+      border-color: rgba(255,255,255,.14);
+      background: rgba(255,255,255,.04);
+      text-decoration: none;
+    }
+
+    /* Hero */
+    .hero{
+      margin-top: 26px;
+      display:grid;
+      grid-template-columns: 1.35fr .65fr;
+      gap: 18px;
+      align-items: stretch;
+    }
+    .card{
+      border: 1px solid rgba(255,255,255,.10);
+      background: var(--panel);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+    .hero-main{
+      padding: 24px;
+      overflow:hidden;
+      position: relative;
+    }
+    .hero-main:before{
+      content:"";
+      position:absolute; inset:-2px;
+      background:
+        radial-gradient(500px 220px at 15% 10%, rgba(124,92,255,.25), transparent 60%),
+        radial-gradient(500px 220px at 70% 10%, rgba(63,227,200,.18), transparent 60%);
+      opacity:.85;
+      pointer-events:none;
+    }
+    .hero-main > *{ position: relative; }
+
+    .kicker{
+      font-family: var(--mono);
+      color: var(--faint);
+      font-size: 12px;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+    }
+    h1{
+      margin: 10px 0 10px;
+      font-size: clamp(30px, 4vw, 44px);
+      line-height: 1.12;
+    }
+    .subtitle{
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.6;
+      max-width: 70ch;
+    }
+    .chips{
+      display:flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 16px 0 18px;
+    }
+    .chip{
+      font-size: 13px;
+      color: rgba(255,255,255,.78);
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.04);
+      padding: 8px 10px;
+      border-radius: 999px;
+    }
+    .cta{
+      display:flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 14px;
+    }
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      gap: 10px;
+      padding: 10px 12px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.04);
+      color: var(--text);
+      font-size: 14px;
+      text-decoration: none;
+    }
+    .btn:hover{ background: rgba(255,255,255,.07); text-decoration:none; }
+    .btn.primary{
+      border-color: rgba(124,92,255,.35);
+      background: linear-gradient(135deg, rgba(124,92,255,.35), rgba(63,227,200,.18));
+    }
+    .btn svg{ opacity:.9; }
+
+    /* Sidebar */
+    .hero-side{
+      padding: 18px;
+      display:flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .avatar{
+      display:flex;
+      gap: 12px;
+      align-items:center;
+      padding: 14px;
+      border-radius: var(--radius2);
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.04);
+    }
+    .pfp{
+      width: 52px; height: 52px; border-radius: 16px;
+      border: 1px solid rgba(255,255,255,.14);
+      background:
+        radial-gradient(circle at 30% 30%, rgba(124,92,255,.45), transparent 55%),
+        radial-gradient(circle at 70% 60%, rgba(63,227,200,.30), transparent 55%),
+        rgba(255,255,255,.05);
+      display:grid; place-items:center;
+      font-weight: 700;
+      letter-spacing: .02em;
+    }
+    .who strong{ display:block; font-size: 15px; }
+    .who span{ display:block; color: var(--muted); font-size: 13px; margin-top: 2px; }
+
+    .mini{
+      padding: 14px;
+      border-radius: var(--radius2);
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.04);
+    }
+    .mini h3{
+      margin:0 0 8px;
+      font-size: 13px;
+      letter-spacing: .10em;
+      text-transform: uppercase;
+      color: var(--faint);
+      font-family: var(--mono);
+    }
+    .mini p{
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.55;
+    }
+    .kv{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 6px;
+      margin-top: 10px;
+      font-size: 14px;
+      color: var(--muted);
+    }
+    .kv div{ display:flex; justify-content: space-between; gap: 10px; }
+    .kv b{ color: var(--text); font-weight: 600; }
+
+    /* Sections */
+    section{ margin-top: 22px; }
+    .section-card{
+      padding: 18px;
+      border-radius: var(--radius);
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.04);
+    }
+    .section-head{
+      display:flex; align-items: baseline; justify-content: space-between; gap: 12px;
+      margin-bottom: 12px;
+    }
+    .section-head h2{
+      margin:0;
+      font-size: 18px;
+      letter-spacing: .02em;
+    }
+    .section-head .hint{
+      color: var(--muted);
+      font-size: 13px;
+      font-family: var(--mono);
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: 12px;
+    }
+    .item{
+      padding: 14px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.035);
+    }
+    .item h3{
+      margin: 0 0 6px;
+      font-size: 15px;
+    }
+    .meta{
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.45;
+    }
+    .tags{
+      display:flex; flex-wrap:wrap; gap: 6px;
+      margin-top: 10px;
+    }
+    .tag{
+      font-family: var(--mono);
+      font-size: 12px;
+      color: rgba(255,255,255,.72);
+      border: 1px solid rgba(255,255,255,.12);
+      padding: 4px 8px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.03);
+    }
+
+    /* Lists */
+    .list{
+      display:flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .pub{
+      padding: 14px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.035);
+    }
+    .pub .title{
+      font-weight: 650;
+      margin-bottom: 4px;
+    }
+    .pub .where{ color: var(--muted); font-size: 13px; }
+    .pub .links{
+      margin-top: 8px;
+      display:flex; gap: 10px; flex-wrap: wrap;
+      font-size: 13px;
+      color: rgba(255,255,255,.80);
+    }
+    .pub .links a{
+      padding: 6px 8px;
+      border-radius: 10px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.03);
+      text-decoration:none;
+    }
+    .pub .links a:hover{ background: rgba(255,255,255,.06); }
+
+    /* Footer */
+    footer{
+      margin-top: 24px;
+      color: var(--muted);
+      font-size: 13px;
+      display:flex;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+      padding: 6px 2px 0;
+    }
+    .mono{ font-family: var(--mono); }
+
+    /* Responsive */
+    @media (max-width: 860px){
+      .hero{ grid-template-columns: 1fr; }
+      .grid{ grid-template-columns: 1fr; }
+      .brand{ min-width: auto; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="nav">
+    <div class="nav-inner">
+      <div class="brand">
+        <div class="dot"></div>
+        <div>
+          <strong>Jalees</strong>
+          <span>graphics • 3D vision • digital humans</span>
+        </div>
+      </div>
+
+      <div class="nav-links">
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="#publications">Publications</a>
+        <a href="#news">News</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <div class="hero">
+      <div class="card hero-main">
+        <div class="kicker">Research Portfolio</div>
+        <h1>Building photoreal digital humans and 3D perception systems.</h1>
+        <p class="subtitle">
+          I’m a researcher/engineer focused on <b>graphics</b>, <b>3D vision</b>, and <b>human modeling</b>:
+          reconstruction, neural rendering, relightable avatars, and physically-based representations.
+        </p>
+
+        <div class="chips">
+          <span class="chip">Neural Rendering</span>
+          <span class="chip">3D Reconstruction</span>
+          <span class="chip">Human Capture</span>
+          <span class="chip">Motion / Retargeting</span>
+          <span class="chip">Relighting</span>
+          <span class="chip">Gaussian / NeRF</span>
+        </div>
+
+        <div class="cta">
+          <!-- Replace # with real links -->
+          <a class="btn primary" href="#" title="Add your CV link">
+            <!-- icon -->
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M7 3h10a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2Z" stroke="currentColor" stroke-width="1.6"/>
+              <path d="M8 8h8M8 12h8M8 16h6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+            </svg>
+            CV (PDF)
+          </a>
+
+          <a class="btn" href="https://github.com/jalees018" target="_blank" rel="noreferrer">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.7c-2.77.6-3.35-1.18-3.35-1.18a2.64 2.64 0 0 0-1.1-1.45c-.9-.62.07-.6.07-.6a2.1 2.1 0 0 1 1.53 1.03 2.13 2.13 0 0 0 2.92.83c.05-.52.27-1 .62-1.36-2.21-.25-4.54-1.1-4.54-4.92 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.5 9.5 0 0 1 5 0c1.9-1.29 2.74-1.02 2.74-1.02.56 1.38.21 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.83-2.33 4.67-4.55 4.92.28.24.68.73.68 1.49v2.2c0 .26.18.57.69.48A10 10 0 0 0 12 2Z" fill="currentColor" opacity=".9"/>
+            </svg>
+            GitHub
+          </a>
+
+          <a class="btn" href="#" title="Add your Google Scholar link">Scholar</a>
+          <a class="btn" href="#" title="Add your lab/company link">Lab / Affiliation</a>
+        </div>
+      </div>
+
+      <div class="card hero-side" id="about">
+        <div class="avatar">
+          <div class="pfp">J</div>
+          <div class="who">
+            <strong>Jalees</strong>
+            <span>Graphics + 3D Vision Researcher</span>
+          </div>
+        </div>
+
+        <div class="mini">
+          <h3>Current Focus</h3>
+          <p>
+            Relightable human avatars, fast 3D capture, and controllable digital humans
+            for telepresence, film, and interactive applications.
+          </p>
+        </div>
+
+        <div class="mini">
+          <h3>Snapshot</h3>
+          <div class="kv">
+            <div><span>Based in</span><b>USA</b></div>
+            <div><span>Interests</span><b>3D, Humans, Rendering</b></div>
+            <div><span>Looking for</span><b>research collabs</b></div>
+          </div>
+        </div>
+
+        <div class="mini" id="contact">
+          <h3>Contact</h3>
+          <p>
+            Email: <a href="mailto:you@example.com">you@example.com</a><br/>
+            X/Twitter: <a href="#" target="_blank" rel="noreferrer">@yourhandle</a><br/>
+            LinkedIn: <a href="#" target="_blank" rel="noreferrer">your-link</a>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <section id="projects">
+      <div class="section-card">
+        <div class="section-head">
+          <h2>Selected Projects</h2>
+          <div class="hint">replace placeholders with your real work</div>
+        </div>
+
+        <div class="grid">
+          <div class="item">
+            <h3>Relightable Digital Human (Realtime)</h3>
+            <div class="meta">
+              A pipeline for capturing a human, fitting a controllable model, and rendering under novel lighting.
+              Includes geometry + appearance decomposition.
+            </div>
+            <div class="tags">
+              <span class="tag">relighting</span><span class="tag">avatar</span><span class="tag">PBR</span>
+            </div>
+          </div>
+
+          <div class="item">
+            <h3>3D Face / Head Reconstruction</h3>
+            <div class="meta">
+              Single/multi-view reconstruction with identity/expression separation and robust tracking.
+            </div>
+            <div class="tags">
+              <span class="tag">3DMM</span><span class="tag">tracking</span><span class="tag">optimization</span>
+            </div>
+          </div>
+
+          <div class="item">
+            <h3>Gaussian Splatting for Humans</h3>
+            <div class="meta">
+              Efficient training + compact representations for dynamic humans with view-dependent effects.
+            </div>
+            <div class="tags">
+              <span class="tag">gaussians</span><span class="tag">neural rendering</span><span class="tag">compression</span>
+            </div>
+          </div>
+
+          <div class="item">
+            <h3>Human Motion Retargeting</h3>
+            <div class="meta">
+              Retarget motion across different body shapes with constraints and physically plausible priors.
+            </div>
+            <div class="tags">
+              <span class="tag">kinematics</span><span class="tag">control</span><span class="tag">animation</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="publications">
+      <div class="section-card">
+        <div class="section-head">
+          <h2>Publications / Preprints</h2>
+          <div class="hint">add PDF / code / project links</div>
+        </div>
+
+        <div class="list">
+          <div class="pub">
+            <div class="title">Paper Title One: Relightable Avatars with Hybrid Representations</div>
+            <div class="where">Jalees, Coauthor • Conference/Journal • 2026</div>
+            <div class="links">
+              <a href="#">PDF</a>
+              <a href="#">Project</a>
+              <a href="#">Code</a>
+              <a href="#">BibTeX</a>
+            </div>
+          </div>
+
+          <div class="pub">
+            <div class="title">Paper Title Two: Fast Human Capture for View Synthesis</div>
+            <div class="where">Jalees, Coauthor • Preprint • 2025</div>
+            <div class="links">
+              <a href="#">arXiv</a>
+              <a href="#">Video</a>
+              <a href="#">Code</a>
+            </div>
+          </div>
+
+          <div class="pub">
+            <div class="title">Paper Title Three: Robust Head Tracking under Challenging Illumination</div>
+            <div class="where">Jalees, Coauthor • Workshop • 2024</div>
+            <div class="links">
+              <a href="#">PDF</a>
+              <a href="#">Slides</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="news">
+      <div class="section-card">
+        <div class="section-head">
+          <h2>News</h2>
+          <div class="hint">keep it short & current</div>
+        </div>
+
+        <div class="list">
+          <div class="pub">
+            <div class="title">2026-04 — Website launched</div>
+            <div class="where">Migrated portfolio to GitHub Pages.</div>
+          </div>
+          <div class="pub">
+            <div class="title">2026 — Open to collaborations</div>
+            <div class="where">If you’re working on digital humans, capture, or neural rendering, reach out.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div>© <span id="year"></span> Jalees • <span class="mono">jalees018.github.io</span></div>
+      <div class="mono">Last updated: <span id="updated"></span></div>
+    </footer>
+  </div>
+
+  <script>
+    // Simple footer dates (no tracking)
+    const d = new Date();
+    document.getElementById("year").textContent = String(d.getFullYear());
+    document.getElementById("updated").textContent = d.toISOString().slice(0,10);
+  </script>
+</body>
 </html>
