@@ -3,26 +3,26 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Jalees — Graphics • 3D Vision • Digital Humans</title>
+  <title>Jalees Nehvi — Graphics • 3D Vision • Digital Humans</title>
   <meta name="description" content="Research portfolio: graphics, 3D vision, digital humans." />
 
   <style>
     :root{
-      --bg: #0b1020;
-      --panel: rgba(255,255,255,.06);
-      --panel2: rgba(255,255,255,.09);
-      --text: rgba(255,255,255,.88);
-      --muted: rgba(255,255,255,.68);
-      --faint: rgba(255,255,255,.50);
-      --line: rgba(255,255,255,.14);
-      --brand: #7c5cff;
-      --brand2:#3fe3c8;
-      --shadow: 0 20px 60px rgba(0,0,0,.45);
+      --bg: #f7f8fc;
+      --panel: rgba(255,255,255,.78);
+      --panel2: rgba(255,255,255,.92);
+      --text: rgba(15, 23, 42, .92);
+      --muted: rgba(15, 23, 42, .68);
+      --faint: rgba(15, 23, 42, .52);
+      --line: rgba(15, 23, 42, .14);
+      --brand: #6d5efc;
+      --brand2:#00b8a9;
+      --shadow: 0 18px 50px rgba(2,6,23,.10);
       --radius: 18px;
       --radius2: 14px;
       --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
-      --max: 1040px;
+      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+      --max: 980px;
     }
 
     * { box-sizing: border-box; }
@@ -32,9 +32,9 @@
       font-family: var(--sans);
       color: var(--text);
       background:
-        radial-gradient(1200px 800px at 15% 10%, rgba(124,92,255,.28), transparent 55%),
-        radial-gradient(900px 700px at 75% 20%, rgba(63,227,200,.20), transparent 55%),
-        radial-gradient(1100px 900px at 45% 85%, rgba(255,255,255,.08), transparent 60%),
+        radial-gradient(1100px 700px at 12% 8%, rgba(109,94,252,.18), transparent 55%),
+        radial-gradient(900px 650px at 78% 10%, rgba(0,184,169,.14), transparent 58%),
+        radial-gradient(900px 700px at 40% 92%, rgba(15, 23, 42, .06), transparent 62%),
         var(--bg);
       letter-spacing: .2px;
     }
@@ -45,7 +45,7 @@
     .wrap{
       max-width: var(--max);
       margin: 0 auto;
-      padding: 32px 18px 60px;
+      padding: 28px 18px 60px;
     }
 
     /* Top nav */
@@ -54,8 +54,8 @@
       top: 0;
       z-index: 50;
       backdrop-filter: blur(10px);
-      background: linear-gradient(to bottom, rgba(11,16,32,.72), rgba(11,16,32,.24));
-      border-bottom: 1px solid rgba(255,255,255,.08);
+      background: linear-gradient(to bottom, rgba(247,248,252,.82), rgba(247,248,252,.45));
+      border-bottom: 1px solid rgba(15,23,42,.08);
     }
     .nav-inner{
       max-width: var(--max);
@@ -75,13 +75,13 @@
     .dot{
       width: 10px; height: 10px; border-radius: 50%;
       background: linear-gradient(135deg, var(--brand), var(--brand2));
-      box-shadow: 0 0 0 4px rgba(124,92,255,.14);
+      box-shadow: 0 0 0 4px rgba(109,94,252,.12);
     }
-    .brand strong{ font-weight: 650; }
+    .brand strong{ font-weight: 700; }
     .brand span{ color: var(--muted); font-size: 13px; }
     .nav-links{
       display:flex;
-      gap: 14px;
+      gap: 10px;
       flex-wrap: wrap;
       justify-content: flex-end;
     }
@@ -94,21 +94,21 @@
     }
     .nav-links a:hover{
       color: var(--text);
-      border-color: rgba(255,255,255,.14);
-      background: rgba(255,255,255,.04);
+      border-color: rgba(15,23,42,.12);
+      background: rgba(255,255,255,.55);
       text-decoration: none;
     }
 
     /* Hero */
     .hero{
-      margin-top: 26px;
+      margin-top: 22px;
       display:grid;
       grid-template-columns: 1.35fr .65fr;
-      gap: 18px;
+      gap: 16px;
       align-items: stretch;
     }
     .card{
-      border: 1px solid rgba(255,255,255,.10);
+      border: 1px solid rgba(15,23,42,.10);
       background: var(--panel);
       border-radius: var(--radius);
       box-shadow: var(--shadow);
@@ -122,9 +122,9 @@
       content:"";
       position:absolute; inset:-2px;
       background:
-        radial-gradient(500px 220px at 15% 10%, rgba(124,92,255,.25), transparent 60%),
-        radial-gradient(500px 220px at 70% 10%, rgba(63,227,200,.18), transparent 60%);
-      opacity:.85;
+        radial-gradient(520px 240px at 15% 10%, rgba(109,94,252,.16), transparent 60%),
+        radial-gradient(520px 240px at 75% 10%, rgba(0,184,169,.12), transparent 60%);
+      opacity:.95;
       pointer-events:none;
     }
     .hero-main > *{ position: relative; }
@@ -151,40 +151,16 @@
       display:flex;
       flex-wrap: wrap;
       gap: 8px;
-      margin: 16px 0 18px;
+      margin: 16px 0 6px;
     }
     .chip{
       font-size: 13px;
-      color: rgba(255,255,255,.78);
-      border: 1px solid rgba(255,255,255,.14);
-      background: rgba(255,255,255,.04);
+      color: rgba(15, 23, 42, .78);
+      border: 1px solid rgba(15, 23, 42, .12);
+      background: rgba(255,255,255,.55);
       padding: 8px 10px;
       border-radius: 999px;
     }
-    .cta{
-      display:flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      margin-top: 14px;
-    }
-    .btn{
-      display:inline-flex;
-      align-items:center;
-      gap: 10px;
-      padding: 10px 12px;
-      border-radius: 12px;
-      border: 1px solid rgba(255,255,255,.14);
-      background: rgba(255,255,255,.04);
-      color: var(--text);
-      font-size: 14px;
-      text-decoration: none;
-    }
-    .btn:hover{ background: rgba(255,255,255,.07); text-decoration:none; }
-    .btn.primary{
-      border-color: rgba(124,92,255,.35);
-      background: linear-gradient(135deg, rgba(124,92,255,.35), rgba(63,227,200,.18));
-    }
-    .btn svg{ opacity:.9; }
 
     /* Sidebar */
     .hero-side{
@@ -200,19 +176,20 @@
       align-items:center;
       padding: 14px;
       border-radius: var(--radius2);
-      border: 1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(15,23,42,.10);
+      background: rgba(255,255,255,.55);
     }
     .pfp{
       width: 52px; height: 52px; border-radius: 16px;
-      border: 1px solid rgba(255,255,255,.14);
+      border: 1px solid rgba(15,23,42,.12);
       background:
-        radial-gradient(circle at 30% 30%, rgba(124,92,255,.45), transparent 55%),
-        radial-gradient(circle at 70% 60%, rgba(63,227,200,.30), transparent 55%),
-        rgba(255,255,255,.05);
+        radial-gradient(circle at 30% 30%, rgba(109,94,252,.26), transparent 60%),
+        radial-gradient(circle at 70% 60%, rgba(0,184,169,.18), transparent 60%),
+        rgba(255,255,255,.85);
       display:grid; place-items:center;
-      font-weight: 700;
+      font-weight: 750;
       letter-spacing: .02em;
+      color: rgba(15,23,42,.85);
     }
     .who strong{ display:block; font-size: 15px; }
     .who span{ display:block; color: var(--muted); font-size: 13px; margin-top: 2px; }
@@ -220,8 +197,8 @@
     .mini{
       padding: 14px;
       border-radius: var(--radius2);
-      border: 1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(15,23,42,.10);
+      background: rgba(255,255,255,.55);
     }
     .mini h3{
       margin:0 0 8px;
@@ -237,24 +214,37 @@
       font-size: 14px;
       line-height: 1.55;
     }
-    .kv{
-      display:grid;
-      grid-template-columns: 1fr;
-      gap: 6px;
+
+    /* Contact icons */
+    .icons{
+      display:flex;
+      flex-wrap: wrap;
+      gap: 10px;
       margin-top: 10px;
-      font-size: 14px;
-      color: var(--muted);
     }
-    .kv div{ display:flex; justify-content: space-between; gap: 10px; }
-    .kv b{ color: var(--text); font-weight: 600; }
+    .iconbtn{
+      display:inline-flex;
+      align-items:center;
+      gap: 9px;
+      padding: 9px 10px;
+      border-radius: 12px;
+      border: 1px solid rgba(15,23,42,.10);
+      background: rgba(255,255,255,.75);
+      color: rgba(15,23,42,.88);
+      font-size: 14px;
+      text-decoration: none;
+    }
+    .iconbtn:hover{ background: rgba(255,255,255,.92); text-decoration:none; }
+    .iconbtn svg{ width: 16px; height: 16px; opacity:.92; }
 
     /* Sections */
-    section{ margin-top: 22px; }
+    section{ margin-top: 18px; }
     .section-card{
       padding: 18px;
       border-radius: var(--radius);
-      border: 1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(15,23,42,.10);
+      background: rgba(255,255,255,.55);
+      box-shadow: 0 10px 30px rgba(2,6,23,.06);
     }
     .section-head{
       display:flex; align-items: baseline; justify-content: space-between; gap: 12px;
@@ -271,41 +261,7 @@
       font-family: var(--mono);
     }
 
-    .grid{
-      display:grid;
-      grid-template-columns: repeat(2, minmax(0,1fr));
-      gap: 12px;
-    }
-    .item{
-      padding: 14px;
-      border-radius: 14px;
-      border: 1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.035);
-    }
-    .item h3{
-      margin: 0 0 6px;
-      font-size: 15px;
-    }
-    .meta{
-      color: var(--muted);
-      font-size: 13px;
-      line-height: 1.45;
-    }
-    .tags{
-      display:flex; flex-wrap:wrap; gap: 6px;
-      margin-top: 10px;
-    }
-    .tag{
-      font-family: var(--mono);
-      font-size: 12px;
-      color: rgba(255,255,255,.72);
-      border: 1px solid rgba(255,255,255,.12);
-      padding: 4px 8px;
-      border-radius: 999px;
-      background: rgba(255,255,255,.03);
-    }
-
-    /* Lists */
+    /* Publications list */
     .list{
       display:flex;
       flex-direction: column;
@@ -314,32 +270,32 @@
     .pub{
       padding: 14px;
       border-radius: 14px;
-      border: 1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.035);
+      border: 1px solid rgba(15,23,42,.10);
+      background: rgba(255,255,255,.72);
     }
     .pub .title{
-      font-weight: 650;
+      font-weight: 700;
       margin-bottom: 4px;
     }
-    .pub .where{ color: var(--muted); font-size: 13px; }
+    .pub .where{ color: var(--muted); font-size: 13px; line-height: 1.45; }
     .pub .links{
       margin-top: 8px;
       display:flex; gap: 10px; flex-wrap: wrap;
       font-size: 13px;
-      color: rgba(255,255,255,.80);
+      color: rgba(15,23,42,.80);
     }
     .pub .links a{
       padding: 6px 8px;
       border-radius: 10px;
-      border: 1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.03);
+      border: 1px solid rgba(15,23,42,.10);
+      background: rgba(255,255,255,.85);
       text-decoration:none;
     }
-    .pub .links a:hover{ background: rgba(255,255,255,.06); }
+    .pub .links a:hover{ background: #fff; }
 
     /* Footer */
     footer{
-      margin-top: 24px;
+      margin-top: 20px;
       color: var(--muted);
       font-size: 13px;
       display:flex;
@@ -353,7 +309,6 @@
     /* Responsive */
     @media (max-width: 860px){
       .hero{ grid-template-columns: 1fr; }
-      .grid{ grid-template-columns: 1fr; }
       .brand{ min-width: auto; }
     }
   </style>
@@ -365,16 +320,14 @@
       <div class="brand">
         <div class="dot"></div>
         <div>
-          <strong>Jalees</strong>
+          <strong>Jalees Nehvi</strong>
           <span>graphics • 3D vision • digital humans</span>
         </div>
       </div>
 
       <div class="nav-links">
         <a href="#about">About</a>
-        <a href="#projects">Projects</a>
         <a href="#publications">Publications</a>
-        <a href="#news">News</a>
         <a href="#contact">Contact</a>
       </div>
     </div>
@@ -384,196 +337,96 @@
     <div class="hero">
       <div class="card hero-main">
         <div class="kicker">Research Portfolio</div>
-        <h1>Building photoreal digital humans and 3D perception systems.</h1>
+        <h1>Graphics, 3D Vision, and Digital Humans.</h1>
         <p class="subtitle">
-          I’m a researcher/engineer focused on <b>graphics</b>, <b>3D vision</b>, and <b>human modeling</b>:
-          reconstruction, neural rendering, relightable avatars, and physically-based representations.
+          I work on <b>3D reconstruction</b>, <b>neural rendering</b>, and <b>human modeling</b>—including
+          relightable avatars and robust non-rigid tracking.
         </p>
 
         <div class="chips">
           <span class="chip">Neural Rendering</span>
           <span class="chip">3D Reconstruction</span>
-          <span class="chip">Human Capture</span>
-          <span class="chip">Motion / Retargeting</span>
+          <span class="chip">Digital Humans</span>
+          <span class="chip">Non-rigid Tracking</span>
           <span class="chip">Relighting</span>
-          <span class="chip">Gaussian / NeRF</span>
-        </div>
-
-        <div class="cta">
-          <!-- Replace # with real links -->
-          <a class="btn primary" href="#" title="Add your CV link">
-            <!-- icon -->
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <path d="M7 3h10a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2Z" stroke="currentColor" stroke-width="1.6"/>
-              <path d="M8 8h8M8 12h8M8 16h6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
-            </svg>
-            CV (PDF)
-          </a>
-
-          <a class="btn" href="https://github.com/jalees018" target="_blank" rel="noreferrer">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.7c-2.77.6-3.35-1.18-3.35-1.18a2.64 2.64 0 0 0-1.1-1.45c-.9-.62.07-.6.07-.6a2.1 2.1 0 0 1 1.53 1.03 2.13 2.13 0 0 0 2.92.83c.05-.52.27-1 .62-1.36-2.21-.25-4.54-1.1-4.54-4.92 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.5 9.5 0 0 1 5 0c1.9-1.29 2.74-1.02 2.74-1.02.56 1.38.21 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.83-2.33 4.67-4.55 4.92.28.24.68.73.68 1.49v2.2c0 .26.18.57.69.48A10 10 0 0 0 12 2Z" fill="currentColor" opacity=".9"/>
-            </svg>
-            GitHub
-          </a>
-
-          <a class="btn" href="#" title="Add your Google Scholar link">Scholar</a>
-          <a class="btn" href="#" title="Add your lab/company link">Lab / Affiliation</a>
         </div>
       </div>
 
       <div class="card hero-side" id="about">
         <div class="avatar">
-          <div class="pfp">J</div>
+          <div class="pfp">JN</div>
           <div class="who">
-            <strong>Jalees</strong>
-            <span>Graphics + 3D Vision Researcher</span>
-          </div>
-        </div>
-
-        <div class="mini">
-          <h3>Current Focus</h3>
-          <p>
-            Relightable human avatars, fast 3D capture, and controllable digital humans
-            for telepresence, film, and interactive applications.
-          </p>
-        </div>
-
-        <div class="mini">
-          <h3>Snapshot</h3>
-          <div class="kv">
-            <div><span>Based in</span><b>USA</b></div>
-            <div><span>Interests</span><b>3D, Humans, Rendering</b></div>
-            <div><span>Looking for</span><b>research collabs</b></div>
+            <strong>Jalees Nehvi</strong>
+            <span>Graphics + 3D Vision</span>
           </div>
         </div>
 
         <div class="mini" id="contact">
           <h3>Contact</h3>
           <p>
-            Email: <a href="mailto:you@example.com">you@example.com</a><br/>
-            X/Twitter: <a href="#" target="_blank" rel="noreferrer">@yourhandle</a><br/>
-            LinkedIn: <a href="#" target="_blank" rel="noreferrer">your-link</a>
+            Email: <a href="mailto:jaleesnehvi@gmail.com">jaleesnehvi@gmail.com</a>
           </p>
+
+          <div class="icons">
+            <a class="iconbtn" href="https://scholar.google.com/citations?hl=en&user=SDbkw1IAAAAJ&view_op=list_works&gmla=AF9nlQtVVJSuHUfCGZi8UKHrSc4cX-iRPbCkv4LeKmJHVP4ITSIwxtmXTmS-mukg-mbH99jBQgRbomZXI37nXT4p9RRIzZ7c8gqvyw" target="_blank" rel="noreferrer">
+              <!-- Scholar-ish icon (cap) -->
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M12 3 2.5 8.2 12 13.4 21.5 8.2 12 3Z" fill="currentColor" opacity=".9"/>
+                <path d="M6.2 11.2V16c0 .8 2.6 2.8 5.8 2.8S17.8 16.8 17.8 16v-4.8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+              </svg>
+              Scholar
+            </a>
+
+            <a class="iconbtn" href="https://www.linkedin.com/in/jalees-nehvi-8596a4127/" target="_blank" rel="noreferrer">
+              <!-- LinkedIn icon -->
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M6.5 9.2V20H3.2V9.2h3.3ZM4.85 3.9a1.9 1.9 0 1 1 0 3.8 1.9 1.9 0 0 1 0-3.8Z" fill="currentColor"/>
+                <path d="M10.2 9.2H13.4v1.5c.5-.9 1.8-1.8 3.6-1.8 3 0 3.6 1.9 3.6 4.9V20H17.3v-5.1c0-1.2 0-2.7-1.7-2.7s-2 1.3-2 2.6V20h-3.3V9.2Z" fill="currentColor"/>
+              </svg>
+              LinkedIn
+            </a>
+
+            <a class="iconbtn" href="https://github.com/jalees018" target="_blank" rel="noreferrer">
+              <!-- GitHub icon -->
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.7c-2.77.6-3.35-1.18-3.35-1.18a2.64 2.64 0 0 0-1.1-1.45c-.9-.62.07-.6.07-.6a2.1 2.1 0 0 1 1.53 1.03 2.13 2.13 0 0 0 2.92.83c.05-.52.27-1 .62-1.36-2.21-.25-4.54-1.1-4.54-4.92 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.5 9.5 0 0 1 5 0c1.9-1.29 2.74-1.02 2.74-1.02.56 1.38.21 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.83-2.33 4.67-4.55 4.92.28.24.68.73.68 1.49v2.2c0 .26.18.57.69.48A10 10 0 0 0 12 2Z" fill="currentColor" opacity=".9"/>
+              </svg>
+              GitHub
+            </a>
+          </div>
         </div>
       </div>
     </div>
 
-    <section id="projects">
-      <div class="section-card">
-        <div class="section-head">
-          <h2>Selected Projects</h2>
-          <div class="hint">replace placeholders with your real work</div>
-        </div>
-
-        <div class="grid">
-          <div class="item">
-            <h3>Relightable Digital Human (Realtime)</h3>
-            <div class="meta">
-              A pipeline for capturing a human, fitting a controllable model, and rendering under novel lighting.
-              Includes geometry + appearance decomposition.
-            </div>
-            <div class="tags">
-              <span class="tag">relighting</span><span class="tag">avatar</span><span class="tag">PBR</span>
-            </div>
-          </div>
-
-          <div class="item">
-            <h3>3D Face / Head Reconstruction</h3>
-            <div class="meta">
-              Single/multi-view reconstruction with identity/expression separation and robust tracking.
-            </div>
-            <div class="tags">
-              <span class="tag">3DMM</span><span class="tag">tracking</span><span class="tag">optimization</span>
-            </div>
-          </div>
-
-          <div class="item">
-            <h3>Gaussian Splatting for Humans</h3>
-            <div class="meta">
-              Efficient training + compact representations for dynamic humans with view-dependent effects.
-            </div>
-            <div class="tags">
-              <span class="tag">gaussians</span><span class="tag">neural rendering</span><span class="tag">compression</span>
-            </div>
-          </div>
-
-          <div class="item">
-            <h3>Human Motion Retargeting</h3>
-            <div class="meta">
-              Retarget motion across different body shapes with constraints and physically plausible priors.
-            </div>
-            <div class="tags">
-              <span class="tag">kinematics</span><span class="tag">control</span><span class="tag">animation</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
     <section id="publications">
       <div class="section-card">
         <div class="section-head">
-          <h2>Publications / Preprints</h2>
-          <div class="hint">add PDF / code / project links</div>
+          <h2>Publications / Projects</h2>
+          <div class="hint">selected</div>
         </div>
 
         <div class="list">
           <div class="pub">
-            <div class="title">Paper Title One: Relightable Avatars with Hybrid Representations</div>
-            <div class="where">Jalees, Coauthor • Conference/Journal • 2026</div>
+            <div class="title">3VP-Avatar</div>
+            <div class="where">Project page</div>
             <div class="links">
-              <a href="#">PDF</a>
-              <a href="#">Project</a>
-              <a href="#">Code</a>
-              <a href="#">BibTeX</a>
+              <a href="https://jalees018.github.io/3VP-Avatar/" target="_blank" rel="noreferrer">Project</a>
             </div>
           </div>
 
           <div class="pub">
-            <div class="title">Paper Title Two: Fast Human Capture for View Synthesis</div>
-            <div class="where">Jalees, Coauthor • Preprint • 2025</div>
+            <div class="title">Event-based Non-rigid 3D Tracking</div>
+            <div class="where">MPI-INF project page</div>
             <div class="links">
-              <a href="#">arXiv</a>
-              <a href="#">Video</a>
-              <a href="#">Code</a>
+              <a href="https://vcai.mpi-inf.mpg.de/projects/Event-based_Non-rigid_3D_Tracking/" target="_blank" rel="noreferrer">Project</a>
             </div>
-          </div>
-
-          <div class="pub">
-            <div class="title">Paper Title Three: Robust Head Tracking under Challenging Illumination</div>
-            <div class="where">Jalees, Coauthor • Workshop • 2024</div>
-            <div class="links">
-              <a href="#">PDF</a>
-              <a href="#">Slides</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="news">
-      <div class="section-card">
-        <div class="section-head">
-          <h2>News</h2>
-          <div class="hint">keep it short & current</div>
-        </div>
-
-        <div class="list">
-          <div class="pub">
-            <div class="title">2026-04 — Website launched</div>
-            <div class="where">Migrated portfolio to GitHub Pages.</div>
-          </div>
-          <div class="pub">
-            <div class="title">2026 — Open to collaborations</div>
-            <div class="where">If you’re working on digital humans, capture, or neural rendering, reach out.</div>
           </div>
         </div>
       </div>
     </section>
 
     <footer>
-      <div>© <span id="year"></span> Jalees • <span class="mono">jalees018.github.io</span></div>
+      <div>© <span id="year"></span> Jalees Nehvi • <span class="mono">jalees018.github.io</span></div>
       <div class="mono">Last updated: <span id="updated"></span></div>
     </footer>
   </div>
