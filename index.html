@@ -1,458 +1,243 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Jalees Nehvi — Graphics • 3D Vision • Digital Humans</title>
-  <meta name="description" content="Jalees Nehvi — Ph.D. candidate at TU Darmstadt (Digital Humans, Multi-view Reconstruction)." />
-
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Jalees Nehvi — researcher in photorealistic 3D head avatars, neural rendering, multi-view reconstruction, and 3D Gaussian Splatting.">
+  <meta name="theme-color" content="#07111f">
+  <title>Jalees Nehvi — 3D Vision & Head Avatars</title>
   <style>
-    :root{
-      --bg: #f7f8fc;
-      --panel: rgba(255,255,255,.78);
-      --text: rgba(15, 23, 42, .92);
-      --muted: rgba(15, 23, 42, .70);
-      --faint: rgba(15, 23, 42, .55);
-      --line: rgba(15, 23, 42, .14);
-      --brand: #6d5efc;
-      --brand2:#00b8a9;
-      --shadow: 0 18px 50px rgba(2,6,23,.10);
-      --radius: 18px;
-      --radius2: 14px;
-      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
-      --max: 980px;
+    :root {
+      --bg: #07111f;
+      --surface: rgba(15, 29, 47, .76);
+      --surface-strong: #102038;
+      --text: #f5f7fb;
+      --muted: #aab8ca;
+      --line: rgba(255,255,255,.12);
+      --accent: #68e1c6;
+      --accent-2: #87a8ff;
+      --shadow: 0 22px 70px rgba(0,0,0,.28);
+      --radius: 24px;
+      --max: 1160px;
     }
-
     * { box-sizing: border-box; }
-    html, body { height: 100%; }
-    body{
-      margin:0;
-      font-family: var(--sans);
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
       color: var(--text);
       background:
-        radial-gradient(1100px 700px at 12% 8%, rgba(109,94,252,.18), transparent 55%),
-        radial-gradient(900px 650px at 78% 10%, rgba(0,184,169,.14), transparent 58%),
-        radial-gradient(900px 700px at 40% 92%, rgba(15, 23, 42, .06), transparent 62%),
+        radial-gradient(circle at 12% 8%, rgba(104,225,198,.12), transparent 29rem),
+        radial-gradient(circle at 86% 16%, rgba(135,168,255,.15), transparent 31rem),
         var(--bg);
-      letter-spacing: .2px;
+      font: 16px/1.65 Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      -webkit-font-smoothing: antialiased;
     }
+    a { color: inherit; text-decoration: none; }
+    a:focus-visible, button:focus-visible { outline: 3px solid var(--accent); outline-offset: 4px; }
+    .shell { width: min(calc(100% - 40px), var(--max)); margin: auto; }
+    .nav {
+      position: sticky; top: 0; z-index: 20;
+      border-bottom: 1px solid transparent;
+      background: rgba(7,17,31,.72); backdrop-filter: blur(18px);
+    }
+    .nav.scrolled { border-color: var(--line); }
+    .nav-inner { height: 76px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+    .brand { font-weight: 760; letter-spacing: -.02em; }
+    .brand span { color: var(--accent); }
+    .nav-links { display: flex; align-items: center; gap: 26px; color: var(--muted); font-size: 14px; }
+    .nav-links a:hover { color: var(--text); }
+    .mini-cta { padding: 9px 15px; border: 1px solid var(--line); border-radius: 999px; color: var(--text); }
 
-    a{ color: inherit; text-decoration: none; }
-    a:hover{ text-decoration: underline; text-underline-offset: 3px; }
+    .hero { min-height: 720px; display: grid; grid-template-columns: 1.15fr .85fr; align-items: center; gap: 70px; padding: 96px 0 88px; }
+    .eyebrow { color: var(--accent); font-size: 13px; font-weight: 750; letter-spacing: .15em; text-transform: uppercase; }
+    h1 { margin: 18px 0 22px; font-size: clamp(54px, 7vw, 96px); line-height: .96; letter-spacing: -.062em; }
+    .lede { max-width: 720px; margin: 0; color: #c8d4e2; font-size: clamp(18px, 2vw, 22px); line-height: 1.6; }
+    .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 34px; }
+    .button { display: inline-flex; align-items: center; gap: 9px; padding: 13px 19px; border-radius: 999px; border: 1px solid var(--line); font-weight: 700; font-size: 14px; transition: .2s ease; }
+    .button.primary { background: var(--accent); color: #06111b; border-color: var(--accent); }
+    .button:hover { transform: translateY(-2px); border-color: rgba(255,255,255,.3); }
+    .button.primary:hover { box-shadow: 0 12px 32px rgba(104,225,198,.22); }
+    .meta { display: flex; flex-wrap: wrap; gap: 18px; margin-top: 26px; color: var(--muted); font-size: 14px; }
+    .meta span::before { content: ""; display: inline-block; width: 7px; height: 7px; margin-right: 9px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 14px var(--accent); }
 
-    .wrap{
-      max-width: var(--max);
-      margin: 0 auto;
-      padding: 28px 18px 60px;
-    }
+    .portrait-card { position: relative; aspect-ratio: .82; max-width: 430px; justify-self: end; border: 1px solid var(--line); border-radius: 38px; background: linear-gradient(145deg, rgba(135,168,255,.18), rgba(104,225,198,.06)); box-shadow: var(--shadow); overflow: hidden; }
+    .portrait-card::before { content: ""; position: absolute; inset: 12%; border-radius: 50% 50% 46% 46%; background: radial-gradient(circle at 44% 35%, rgba(255,255,255,.34), transparent 4%), radial-gradient(circle at 63% 35%, rgba(255,255,255,.34), transparent 4%), radial-gradient(ellipse at 50% 58%, transparent 0 18%, rgba(104,225,198,.38) 19% 20%, transparent 21%), radial-gradient(ellipse at 50% 42%, rgba(135,168,255,.48), rgba(17,34,56,.16) 58%, transparent 59%); filter: drop-shadow(0 30px 40px rgba(0,0,0,.35)); }
+    .portrait-card::after { content: ""; position: absolute; inset: 0; background-image: linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px); background-size: 30px 30px; mask-image: linear-gradient(to bottom, black, transparent 80%); }
+    .orbit { position: absolute; inset: 8%; border: 1px solid rgba(104,225,198,.28); border-radius: 50%; transform: rotate(24deg); }
+    .orbit.two { inset: 18% 4%; border-color: rgba(135,168,255,.25); transform: rotate(-18deg); }
+    .card-label { position: absolute; z-index: 2; left: 26px; bottom: 25px; padding: 10px 13px; border: 1px solid var(--line); border-radius: 12px; background: rgba(7,17,31,.72); backdrop-filter: blur(10px); font: 650 12px/1.3 ui-monospace, SFMono-Regular, Menlo, monospace; color: #cfe8e3; }
 
-    /* Top nav */
-    .nav{
-      position: sticky;
-      top: 0;
-      z-index: 50;
-      backdrop-filter: blur(10px);
-      background: linear-gradient(to bottom, rgba(247,248,252,.82), rgba(247,248,252,.45));
-      border-bottom: 1px solid rgba(15,23,42,.08);
-    }
-    .nav-inner{
-      max-width: var(--max);
-      margin: 0 auto;
-      padding: 14px 18px;
-      display:flex;
-      align-items:center;
-      justify-content: space-between;
-      gap: 12px;
-    }
-    .brand{
-      display:flex;
-      align-items:center;
-      gap: 10px;
-      min-width: 240px;
-    }
-    .dot{
-      width: 10px; height: 10px; border-radius: 50%;
-      background: linear-gradient(135deg, var(--brand), var(--brand2));
-      box-shadow: 0 0 0 4px rgba(109,94,252,.12);
-    }
-    .brand strong{ font-weight: 700; }
-    .brand span{ color: var(--muted); font-size: 13px; }
+    section { padding: 92px 0; scroll-margin-top: 72px; }
+    .section-head { display: grid; grid-template-columns: .55fr 1.45fr; gap: 60px; margin-bottom: 42px; }
+    h2 { margin: 0; font-size: clamp(34px, 4vw, 54px); line-height: 1.05; letter-spacing: -.045em; }
+    .section-intro { max-width: 700px; margin: 0; color: var(--muted); font-size: 18px; }
 
-    .nav-links{
-      display:flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      justify-content: flex-end;
-    }
-    .nav-links a{
-      color: var(--muted);
-      font-size: 14px;
-      padding: 8px 10px;
-      border-radius: 999px;
-      border: 1px solid transparent;
-    }
-    .nav-links a:hover{
-      color: var(--text);
-      border-color: rgba(15,23,42,.12);
-      background: rgba(255,255,255,.55);
-      text-decoration: none;
-    }
+    .projects { display: grid; gap: 22px; }
+    .project { display: grid; grid-template-columns: minmax(380px, .9fr) 1.1fr; min-height: 280px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); overflow: hidden; transition: .25s ease; }
+    .project:hover { transform: translateY(-3px); border-color: rgba(104,225,198,.32); box-shadow: var(--shadow); }
+    .project-art { min-height: 280px; display: flex; align-items: center; justify-content: center; padding: 18px; overflow: hidden; background: #fff; }
+    .project-art img { display: block; width: 100%; height: 100%; max-height: 280px; object-fit: contain; }
+    .project-copy { padding: 30px 34px; display: flex; flex-direction: column; justify-content: center; }
+    .venue { color: var(--accent); font-weight: 750; font-size: 12px; letter-spacing: .12em; text-transform: uppercase; }
+    h3 { margin: 7px 0 10px; font-size: clamp(24px, 3vw, 34px); line-height: 1.15; letter-spacing: -.035em; }
+    .authors { margin: 0 0 12px; color: #d5dfeb; font-size: 14px; }
+    .summary { margin: 0; color: var(--muted); }
+    .project-links { display: flex; flex-wrap: wrap; gap: 18px; margin-top: 20px; font-size: 14px; font-weight: 700; }
+    .project-links a { color: var(--accent); }
+    .project-links a:hover { text-decoration: underline; }
 
-    /* Layout */
-    .hero{
-      margin-top: 22px;
-      display:grid;
-      grid-template-columns: 1.35fr .65fr;
-      gap: 16px;
-      align-items: stretch;
-    }
-    .card{
-      border: 1px solid rgba(15,23,42,.10);
-      background: var(--panel);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-    }
-    .hero-main{
-      padding: 24px;
-      overflow:hidden;
-      position: relative;
-    }
-    .hero-main:before{
-      content:"";
-      position:absolute; inset:-2px;
-      background:
-        radial-gradient(520px 240px at 15% 10%, rgba(109,94,252,.16), transparent 60%),
-        radial-gradient(520px 240px at 75% 10%, rgba(0,184,169,.12), transparent 60%);
-      opacity:.95;
-      pointer-events:none;
-    }
-    .hero-main > *{ position: relative; }
+    .about-grid { display: grid; grid-template-columns: 1.25fr .75fr; gap: 22px; }
+    .panel { padding: 32px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); }
+    .panel h3 { margin-top: 0; font-size: 24px; }
+    .panel p { color: var(--muted); }
+    .tags { display: flex; flex-wrap: wrap; gap: 9px; }
+    .tag { padding: 8px 11px; border: 1px solid var(--line); border-radius: 999px; color: #cfdae7; background: rgba(255,255,255,.025); font-size: 13px; }
+    .timeline { list-style: none; padding: 0; margin: 4px 0 0; }
+    .timeline li { position: relative; padding: 0 0 22px 22px; border-left: 1px solid var(--line); }
+    .timeline li:last-child { padding-bottom: 0; }
+    .timeline li::before { content: ""; position: absolute; left: -5px; top: 7px; width: 9px; height: 9px; border-radius: 50%; background: var(--accent-2); }
+    .timeline strong { display: block; }
+    .timeline span { color: var(--muted); font-size: 14px; }
 
-    .kicker{
-      font-family: var(--mono);
-      color: var(--faint);
-      font-size: 12px;
-      letter-spacing: .14em;
-      text-transform: uppercase;
-    }
-    h1{
-      margin: 10px 0 10px;
-      font-size: clamp(30px, 4vw, 44px);
-      line-height: 1.12;
-    }
-    .subtitle{
-      color: var(--muted);
-      font-size: 16px;
-      line-height: 1.65;
-      max-width: 78ch;
-    }
+    .contact { text-align: center; padding-bottom: 120px; }
+    .contact .eyebrow { margin-bottom: 15px; }
+    .contact h2 { max-width: 760px; margin: auto; }
+    .contact p { max-width: 600px; margin: 20px auto 30px; color: var(--muted); font-size: 18px; }
+    footer { border-top: 1px solid var(--line); color: var(--muted); }
+    .footer-inner { min-height: 88px; display: flex; justify-content: space-between; align-items: center; gap: 20px; font-size: 13px; }
 
-    .chips{
-      display:flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin: 16px 0 0;
+    @media (max-width: 860px) {
+      .hero { grid-template-columns: 1fr; min-height: auto; padding-top: 76px; }
+      .portrait-card { width: min(100%, 430px); justify-self: start; }
+      .section-head, .about-grid { grid-template-columns: 1fr; gap: 22px; }
+      .project { grid-template-columns: 1fr; }
+      .project-art { min-height: 220px; }
+      .nav-links a:not(.mini-cta) { display: none; }
     }
-    .chip{
-      font-size: 13px;
-      color: rgba(15, 23, 42, .78);
-      border: 1px solid rgba(15, 23, 42, .12);
-      background: rgba(255,255,255,.55);
-      padding: 8px 10px;
-      border-radius: 999px;
+    @media (max-width: 560px) {
+      .shell { width: min(calc(100% - 28px), var(--max)); }
+      h1 { font-size: 53px; }
+      section { padding: 72px 0; }
+      .project-copy, .panel { padding: 24px; }
+      .footer-inner { align-items: flex-start; flex-direction: column; justify-content: center; }
     }
-
-    /* Sidebar */
-    .hero-side{
-      padding: 18px;
-      display:flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-
-    .avatar{
-      display:flex;
-      gap: 12px;
-      align-items:center;
-      padding: 14px;
-      border-radius: var(--radius2);
-      border: 1px solid rgba(15,23,42,.10);
-      background: rgba(255,255,255,.55);
-    }
-    .pfp{
-      width: 52px; height: 52px; border-radius: 16px;
-      border: 1px solid rgba(15,23,42,.12);
-      background:
-        radial-gradient(circle at 30% 30%, rgba(109,94,252,.26), transparent 60%),
-        radial-gradient(circle at 70% 60%, rgba(0,184,169,.18), transparent 60%),
-        rgba(255,255,255,.85);
-      display:grid; place-items:center;
-      font-weight: 750;
-      letter-spacing: .02em;
-      color: rgba(15,23,42,.85);
-    }
-    .who strong{ display:block; font-size: 15px; }
-    .who span{ display:block; color: var(--muted); font-size: 13px; margin-top: 2px; }
-
-    .mini{
-      padding: 14px;
-      border-radius: var(--radius2);
-      border: 1px solid rgba(15,23,42,.10);
-      background: rgba(255,255,255,.55);
-    }
-    .mini h3{
-      margin:0 0 8px;
-      font-size: 13px;
-      letter-spacing: .10em;
-      text-transform: uppercase;
-      color: var(--faint);
-      font-family: var(--mono);
-    }
-    .mini p{
-      margin: 0;
-      color: var(--muted);
-      font-size: 14px;
-      line-height: 1.55;
-    }
-
-    /* Contact icons */
-    .icons{
-      display:flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 10px;
-    }
-    .iconbtn{
-      display:inline-flex;
-      align-items:center;
-      gap: 9px;
-      padding: 9px 10px;
-      border-radius: 12px;
-      border: 1px solid rgba(15,23,42,.10);
-      background: rgba(255,255,255,.75);
-      color: rgba(15,23,42,.88);
-      font-size: 14px;
-      text-decoration: none;
-    }
-    .iconbtn:hover{ background: rgba(255,255,255,.92); text-decoration:none; }
-    .iconbtn svg{ width: 16px; height: 16px; opacity:.92; }
-
-    /* Sections */
-    section{ margin-top: 18px; }
-    .section-card{
-      padding: 18px;
-      border-radius: var(--radius);
-      border: 1px solid rgba(15,23,42,.10);
-      background: rgba(255,255,255,.55);
-      box-shadow: 0 10px 30px rgba(2,6,23,.06);
-    }
-    .section-head{
-      display:flex; align-items: baseline; justify-content: space-between; gap: 12px;
-      margin-bottom: 12px;
-    }
-    .section-head h2{
-      margin:0;
-      font-size: 18px;
-      letter-spacing: .02em;
-    }
-
-    /* Publications (detailed) */
-    .pubs{
-      display:flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-    .pub{
-      border: 1px solid rgba(15,23,42,.10);
-      background: rgba(255,255,255,.78);
-      border-radius: 14px;
-      padding: 14px;
-    }
-    .pub .title{
-      font-weight: 760;
-      margin: 0 0 6px;
-      line-height: 1.3;
-    }
-    .pub .authors{
-      margin: 0 0 2px;
-      color: rgba(15,23,42,.80);
-      font-size: 14px;
-      line-height: 1.5;
-    }
-    .pub .venue{
-      margin: 0;
-      color: var(--muted);
-      font-size: 13px;
-      line-height: 1.5;
-    }
-    .pub .links{
-      margin-top: 10px;
-      display:flex;
-      flex-wrap: wrap;
-      gap: 8px;
-    }
-    .pill{
-      display:inline-flex;
-      align-items:center;
-      gap: 8px;
-      padding: 6px 10px;
-      border-radius: 999px;
-      border: 1px solid rgba(15,23,42,.10);
-      background: rgba(255,255,255,.92);
-      font-size: 13px;
-      color: rgba(15,23,42,.85);
-      text-decoration: none;
-    }
-    .pill:hover{ background: #fff; text-decoration: none; }
-
-    footer{
-      margin-top: 20px;
-      color: var(--muted);
-      font-size: 13px;
-      display:flex;
-      justify-content: space-between;
-      gap: 12px;
-      flex-wrap: wrap;
-      padding: 6px 2px 0;
-    }
-    .mono{ font-family: var(--mono); }
-
-    @media (max-width: 860px){
-      .hero{ grid-template-columns: 1fr; }
-      .brand{ min-width: auto; }
-    }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; } }
   </style>
 </head>
-
 <body>
-  <div class="nav">
-    <div class="nav-inner">
-      <div class="brand">
-        <div class="dot"></div>
-        <div>
-          <strong>Jalees Nehvi</strong>
-          <span> Graphics • 3D Vision • Digital Humans</span>
-        </div>
-      </div>
-
+  <nav class="nav" aria-label="Primary navigation">
+    <div class="shell nav-inner">
+      <a class="brand" href="#top">Jalees<span>.</span></a>
       <div class="nav-links">
+        <a href="#work">Research</a>
         <a href="#about">About</a>
-        <a href="#publications">Publications</a>
-        <a href="#contact">Contact</a>
+        <a href="https://scholar.google.com/citations?user=SDbkw1IAAAAJ" target="_blank" rel="noreferrer">Scholar</a>
+        <a class="mini-cta" href="mailto:jaleesnehvi@gmail.com">Get in touch</a>
       </div>
     </div>
-  </div>
+  </nav>
 
-  <div class="wrap">
-    <div class="hero">
-      <div class="card hero-main">
-        <div class="kicker">Research Portfolio</div>
+  <main id="top">
+    <header class="shell hero">
+      <div>
+        <div class="eyebrow">Researcher · 3D Vision · Graphics</div>
         <h1>Jalees Nehvi</h1>
-        <p class="subtitle">
-          Ph.D. candidate in Computer Science at the Technical University of Darmstadt, Germany supervised by Prof. Justus Thies, focusing on 3D digital humans and multi-view
-          reconstruction. I developed computational models for 3D human dynamics, integrating computer vision, graphics, and ML for facial and upper body reconstruction.
-        </p>
-
-        <div class="chips">
-          <span class="chip">3D Digital Humans</span>
-          <span class="chip">Multi-view Reconstruction</span>
-          <span class="chip">3D Human Dynamics</span>
-          <span class="chip">Vision + Graphics + ML</span>
+        <p class="lede">I develop learning-based methods for photorealistic 3D head avatars, facial reconstruction, and neural rendering—with a focus on preserving identity and expression from sparse, consumer-level inputs.</p>
+        <div class="actions">
+          <a class="button primary" href="#work">Explore my research <span aria-hidden="true">↓</span></a>
+          <a class="button" href="https://scholar.google.com/citations?user=SDbkw1IAAAAJ" target="_blank" rel="noreferrer">Google Scholar ↗</a>
+          <a class="button" href="https://github.com/jalees018" target="_blank" rel="noreferrer">GitHub ↗</a>
         </div>
+        <div class="meta"><span>PhD candidate at TU Darmstadt</span><span>Available for research and industry roles</span></div>
       </div>
-
-      <div class="card hero-side" id="about">
-        <div class="avatar">
-          <div class="pfp">JN</div>
-          <div class="who">
-            <strong>Jalees Nehvi</strong>
-            <span>Ph.D. candidate • TU Darmstadt</span>
-          </div>
-        </div>
-
-        <div class="mini" id="contact">
-          <h3>Contact</h3>
-          <p>
-            Email: <a href="mailto:jaleesnehvi@gmail.com">jaleesnehvi@gmail.com</a>
-          </p>
-
-          <div class="icons">
-            <a class="iconbtn" href="https://scholar.google.com/citations?hl=en&user=SDbkw1IAAAAJ&view_op=list_works&gmla=AF9nlQtVVJSuHUfCGZi8UKHrSc4cX-iRPbCkv4LeKmJHVP4ITSIwxtmXTmS-mukg-mbH99jBQgRbomZXI37nXT4p9RRIzZ7c8gqvyw" target="_blank" rel="noreferrer">
-              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                <path d="M12 3 2.5 8.2 12 13.4 21.5 8.2 12 3Z" fill="currentColor" opacity=".9"/>
-                <path d="M6.2 11.2V16c0 .8 2.6 2.8 5.8 2.8S17.8 16.8 17.8 16v-4.8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
-              </svg>
-              Scholar
-            </a>
-
-            <a class="iconbtn" href="https://www.linkedin.com/in/jalees-nehvi-8596a4127/" target="_blank" rel="noreferrer">
-              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                <path d="M6.5 9.2V20H3.2V9.2h3.3ZM4.85 3.9a1.9 1.9 0 1 1 0 3.8 1.9 1.9 0 0 1 0-3.8Z" fill="currentColor"/>
-                <path d="M10.2 9.2H13.4v1.5c.5-.9 1.8-1.8 3.6-1.8 3 0 3.6 1.9 3.6 4.9V20H17.3v-5.1c0-1.2 0-2.7-1.7-2.7s-2 1.3-2 2.6V20h-3.3V9.2Z" fill="currentColor"/>
-              </svg>
-              LinkedIn
-            </a>
-
-            <a class="iconbtn" href="https://github.com/jalees018" target="_blank" rel="noreferrer">
-              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                <path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.7c-2.77.6-3.35-1.18-3.35-1.18a2.64 2.64 0 0 0-1.1-1.45c-.9-.62.07-.6.07-.6a2.1 2.1 0 0 1 1.53 1.03 2.13 2.13 0 0 0 2.92.83c.05-.52.27-1 .62-1.36-2.21-.25-4.54-1.1-4.54-4.92 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.5 9.5 0 0 1 5 0c1.9-1.29 2.74-1.02 2.74-1.02.56 1.38.21 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.83-2.33 4.67-4.55 4.92.28.24.68.73.68 1.49v2.2c0 .26.18.57.69.48A10 10 0 0 0 12 2Z" fill="currentColor" opacity=".9"/>
-              </svg>
-              GitHub
-            </a>
-          </div>
-        </div>
+      <div class="portrait-card" aria-label="Abstract visualization of a digital human head">
+        <div class="orbit"></div><div class="orbit two"></div>
+        <div class="card-label">representation: 3D Gaussians<br>input: sparse multi-view RGB</div>
       </div>
-    </div>
+    </header>
 
-    <section id="publications">
-      <div class="section-card">
+    <section id="work">
+      <div class="shell">
         <div class="section-head">
-          <h2>Publications</h2>
+          <div><div class="eyebrow">Selected work</div><h2>Research</h2></div>
+          <p class="section-intro">My work sits at the intersection of computer vision, graphics, and machine learning. I build 3D head representations that preserve facial identity and expression while reducing capture complexity.</p>
         </div>
+        <div class="projects">
+          <article class="project">
+            <div class="project-art"><img src="assets/3drealhead.png" alt="3DRealHead reconstructing an animatable 3D head avatar from a few images and monocular driving video"></div>
+            <div class="project-copy">
+              <div class="venue">IEEE FG 2026</div>
+              <h3>3DRealHead: Few-Shot Detailed Head Avatar</h3>
+              <p class="authors"><strong>Jalees Nehvi</strong>, Timo Bolkart, Thabo Beeler, Justus Thies</p>
+              <p class="summary">A learned 3D Gaussian head prior that reconstructs a detailed, animatable avatar from only 1–3 images and drives it from monocular video.</p>
+              <div class="project-links"><a href="https://jalees018.github.io/3DRealHead/">Project ↗</a><a href="https://arxiv.org/abs/2604.13171">Paper ↗</a><a href="https://www.youtube.com/watch?v=F906aIENtGA">Video ↗</a></div>
+            </div>
+          </article>
 
-        <div class="pubs">
-          <!-- TODO: replace authors/venue once you send the exact author lists + venue/year for each -->
-          <div class="pub">
-            <p class="title">3DRealHead: Few-Shot Detailed Head Avatar</p>
-            <p class="authors"><b>Jalees Nehvi, Timo Bolkart, Thabo Beeler, Justus Thies</p>
-            <p class="venue">IEEE Faces & Gestures (FG) 2026</p>
-            <div class="links">
-              <a class="pill" href="https://jalees018.github.io/3DRealHead/" target="_blank" rel="noreferrer">Project Page</a>
+          <article class="project">
+            <div class="project-art"><img src="assets/3vp-avatar.png" alt="360 degree Volumetric Portrait Avatar capture and novel-view rendering overview"></div>
+            <div class="project-copy">
+              <div class="venue">GCPR 2024 · Oral</div>
+              <h3>360° Volumetric Portrait Avatar</h3>
+              <p class="authors"><strong>Jalees Nehvi</strong>, Berna Kabadayi, Julien Valentin, Justus Thies</p>
+              <p class="summary">The first monocular method for reconstructing a complete 360° photorealistic portrait avatar, using template-based tracking and a neural volumetric representation.</p>
+              <div class="project-links"><a href="https://jalees018.github.io/3VP-Avatar/">Project ↗</a><a href="https://arxiv.org/abs/2312.05311">Paper ↗</a></div>
             </div>
-          </div>
-          
-          <div class="pub">
-            <p class="title">360° Volumetric Portrait Avatar</p>
-            <p class="authors"><b>Jalees Nehvi, Berna Kabadayi, Julien Valentin, Justus Thies</p>
-            <p class="venue">German Conference on Pattern Recognition 2024 (Oral)</p>
-            <div class="links">
-              <a class="pill" href="https://jalees018.github.io/3VP-Avatar/" target="_blank" rel="noreferrer">Project Page</a>
-            </div>
-          </div>
+          </article>
 
-          <div class="pub">
-            <p class="title">Differentiable Event Stream Simulator for Non-Rigid 3D Tracking</p>
-            <p class="authors"><b>Jalees Nehvi, Vladislav Golyanik, Franziska Mueller, Hans-Peter Seidel, Mohamed Elgharib, Christian Theobalt</p>
-            <p class="venue">CVPR Workshop 2021</p>
-            <div class="links">
-              <a class="pill" href="https://vcai.mpi-inf.mpg.de/projects/Event-based_Non-rigid_3D_Tracking/" target="_blank" rel="noreferrer">Project Page</a>
+          <article class="project">
+            <div class="project-art"><img src="assets/event-stream-simulator.png" alt="Differentiable Event Stream Simulator and analysis-by-synthesis optimization pipeline"></div>
+            <div class="project-copy">
+              <div class="venue">CVPR Workshop 2021</div>
+              <h3>Differentiable Event Stream Simulator for Non-Rigid 3D Tracking</h3>
+              <p class="authors"><strong>Jalees Nehvi</strong>, Vladislav Golyanik, Franziska Mueller, Hans-Peter Seidel, Mohamed Elgharib, Christian Theobalt</p>
+              <p class="summary">The first differentiable simulator of asynchronous event streams, enabling analysis-by-synthesis tracking of deformable 3D objects without large training datasets.</p>
+              <div class="project-links"><a href="https://vcai.mpi-inf.mpg.de/projects/Event-based_Non-rigid_3D_Tracking/">Project & downloads ↗</a></div>
             </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="shell">
+        <div class="section-head">
+          <div><div class="eyebrow">Background</div><h2>About</h2></div>
+          <p class="section-intro">I am a final-year PhD candidate in Computer Science at TU Darmstadt, supervised by Prof. Justus Thies. My research explores accessible capture, reconstruction, and controllable animation of photorealistic 3D human heads.</p>
+        </div>
+        <div class="about-grid">
+          <div class="panel">
+            <h3>Research interests</h3>
+            <p>I am interested in representations and learning systems for identity-faithful, expressive 3D head avatars—especially few-view reconstruction, 3D Gaussian Splatting, neural rendering, and robust facial tracking and animation.</p>
+            <div class="tags"><span class="tag">3D Head Avatars</span><span class="tag">Gaussian Splatting</span><span class="tag">Neural Rendering</span><span class="tag">Multi-view Geometry</span><span class="tag">Facial Tracking</span><span class="tag">Generative Models</span><span class="tag">PyTorch</span><span class="tag">Differentiable Rendering</span></div>
+          </div>
+          <div class="panel">
+            <h3>Path</h3>
+            <ul class="timeline">
+              <li><strong>PhD · TU Darmstadt</strong><span>3D Graphics & Vision · 2024–present</span></li>
+              <li><strong>Doctoral research · MPI-IS</strong><span>Tübingen · 2021–2024</span></li>
+              <li><strong>MSc · Saarland University</strong><span>Computer Science · 2018–2021</span></li>
+            </ul>
           </div>
         </div>
       </div>
     </section>
 
-    <footer>
-      <div>© <span id="year"></span> Jalees Nehvi • <span class="mono">jalees018.github.io</span></div>
-      <div class="mono">Last updated: <span id="updated"></span></div>
-    </footer>
-  </div>
+    <section class="contact" id="contact">
+      <div class="shell">
+        <div class="eyebrow">Contact details</div>
+        <h2>Contact</h2>
+        <p>Darmstadt, Germany · Available for research and industry roles</p>
+        <div class="actions" style="justify-content:center"><a class="button primary" href="mailto:jaleesnehvi@gmail.com">jaleesnehvi@gmail.com</a><a class="button" href="https://www.linkedin.com/in/jalees-nehvi-8596a4127/" target="_blank" rel="noreferrer">LinkedIn ↗</a></div>
+      </div>
+    </section>
+  </main>
 
+  <footer><div class="shell footer-inner"><span>© <span id="year"></span> Jalees Nehvi</span><span>Designed for clarity, speed, and accessibility.</span></div></footer>
   <script>
-    const d = new Date();
-    document.getElementById("year").textContent = String(d.getFullYear());
-    document.getElementById("updated").textContent = d.toISOString().slice(0,10);
+    document.getElementById('year').textContent = new Date().getFullYear();
+    const nav = document.querySelector('.nav');
+    addEventListener('scroll', () => nav.classList.toggle('scrolled', scrollY > 8), { passive: true });
   </script>
 </body>
 </html>
